@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retail Order Management System</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="brand">
+      <span class="brand-tag">ERP</span>
+      <h1>Retail Order Operations</h1>
+    </div>
+    <div class="role-selector">
+      <label for="select-role">Current Workspace Role:</label>
+      <select id="select-role">
+        <option value="Shipping Office">Shipping Office</option>
+        <option value="Buyer Agent">Buyer Agent</option>
+        <option value="Supervisor">Supervisor</option>
+        <option value="Seller">Seller</option>
+        <option value="Receive Agent">Receive Agent</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="sidebar">
+      <div class="card">
+        <div class="card-header">
+          <h2>Create Requisition</h2>
+        </div>
+        <form id="form-requisition">
+          <div class="field">
+            <label for="input-product">Item Description</label>
+            <input type="text" id="input-product" placeholder="e.g. 24 IPS Monitors" required>
+          </div>
+          <div class="field">
+            <label for="input-quantity">Quantity</label>
+            <input type="number" id="input-quantity" min="1" value="10" required>
+          </div>
+          <div class="field">
+            <label for="input-budget">Target Budget ($)</label>
+            <input type="number" id="input-budget" placeholder="1500" required>
+          </div>
+          <div class="field-checkbox">
+            <input type="checkbox" id="input-review">
+            <label for="input-review">Requires Supervisor Approval</label>
+          </div>
+          <button type="submit" class="btn btn-primary full-width">Add Order to System</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="main-content">
+      <div class="card">
+        <div class="card-header">
+          <h2>Order Directory</h2>
+          <span id="order-counter" class="counter-tag">0 Orders</span>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Current Status</th>
+                <th>Action Owner</th>
+                <th>Control</th>
+              </tr>
+            </thead>
+            <tbody id="order-list-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="panel-detail" class="card hidden">
+        <div class="card-header">
+          <h2>Order Workspace: <span id="detail-id">#ORD-000</span></h2>
+          <span id="detail-status" class="badge">Status</span>
+        </div>
+
+        <div class="stepper" id="stepper">
+          <div class="step" data-step="1"><span class="step-num">1</span> Requisition</div>
+          <div class="step" data-step="2"><span class="step-num">2</span> Review / RFQ</div>
+          <div class="step" data-step="3"><span class="step-num">3</span> Quote</div>
+          <div class="step" data-step="4"><span class="step-num">4</span> Order</div>
+          <div class="step" data-step="5"><span class="step-num">5</span> Fulfillment</div>
+          <div class="step" data-step="6"><span class="step-num">6</span> Invoice</div>
+          <div class="step" data-step="7"><span class="step-num">7</span> Complete</div>
+        </div>
+
+        <div class="grid-info">
+          <div class="info-box">
+            <span class="label">Product Description</span>
+            <strong id="detail-product">-</strong>
+          </div>
+          <div class="info-box">
+            <span class="label">Quantity Requested</span>
+            <strong id="detail-quantity">-</strong>
+          </div>
+          <div class="info-box">
+            <span class="label">Quoted Amount</span>
+            <strong id="detail-quote">Pending</strong>
+          </div>
+          <div class="info-box">
+            <span class="label">Payment Status</span>
+            <strong id="detail-payment">Pending</strong>
+          </div>
+        </div>
+
+        <div class="actions-wrapper">
+          <div id="role-notice" class="notice-banner"></div>
+          <div id="container-inputs"></div>
+          <div id="container-buttons" class="btn-group"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="dist/app.js"></script>
+</body>
+</html>
